@@ -1,0 +1,41 @@
+.container {
+    width: 15em;
+    background-color: #eae9e991;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    .content {
+        height: 30px;
+        margin: 30px 0;
+
+        img {
+            width: 12em;
+        }
+    }
+
+    nav {
+        width: 100%;
+
+        ul li {
+            width: 100%;
+            height: 2.5em;
+            border-radius: 0.8px;
+            display: inline-block;
+            text-align: center;
+            line-height: 2.5em;
+            font-family: "Montserrat", sans-serif;
+            color: rgba(0, 0, 0, 0.69);
+
+            :houver {
+                background-color: rgba(210, 228, 237, 0.989);
+            }
+        }
+
+        ul li:hover {
+            background-color: rgba(210, 228, 237, 0.989);
+        }
+    }
+}
