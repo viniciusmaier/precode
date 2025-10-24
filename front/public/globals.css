@@ -6,3 +6,17 @@
     box-sizing: border-box;
     list-style: none;
 }
+
+:root {
+    --primary-color-precode: rgba(210, 228, 237, 0.989);
+    --primary-color: #eae9e991;
+    --primary-color-container: #ffffff51;
+
+    --bg-search-button: #158cba;
+    --bg-clean-button: #eeeeee;
+    --color-search-button: #ffff;
+    --color-clean-button: #352c2ce5;
+
+    /* Fontes */
+    --font-primary: "Montserrat", sans-serif;
+}

@@ -3,12 +3,87 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Pedidos</title>
         <link rel="stylesheet" href="../../public/globals.css" />
-        <script src="../../components/navbar/script.js"></script>
+        <link rel="stylesheet" href="./styles.css" />
         <script src="../../components/navbar/scripts/script.js" defer></script>
     </head>
     <body>
-        <app-navbar></app-navbar>
+        <main>
+            <app-navbar></app-navbar>
+            <div class="container-list-orders">
+                <h1>Pedidos de Venda</h1>
+                <hr />
+                <div class="container-filters">
+                    <form action="">
+                        <div class="fields">
+                            <label for="">
+                                <span>Código Pedido:</span>
+                                <input type="number" />
+                            </label>
+                            <label for="">
+                                <span>Cliente:</span>
+                                <input type="text" />
+                            </label>
+                            <label for="">
+                                <span>Data:</span>
+                                <input type="date" />
+                            </label>
+                            <label for="">
+                                <span>Status:</span>
+                                <input type="text" />
+                            </label>
+                            <label for="">
+                                <span>Faturado:</span>
+                                <input type="text" />
+                            </label>
+                        </div>
+
+                        <div class="buttons">
+                            <button>Limpar</button>
+                            <button>Buscar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="list-orders">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cod. Pedido</th>
+                                <th>Cliente</th>
+                                <th>Vendedor</th>
+                                <th>Data. Pedido</th>
+                                <th>Vl. Total</th>
+                                <th>Status</th>
+                                <th>Faturado?</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12312</td>
+                                <td>Vinicius</td>
+                                <td>Gabriel</td>
+                                <td>23/10/2025</td>
+                                <td>1500</td>
+                                <td>Aberto</td>
+                                <td>Sim</td>
+                                <td><button>Detalhes</button></td>
+                            </tr>
+                            <tr>
+                                <td>12312</td>
+                                <td>Vinicius</td>
+                                <td>Gabriel</td>
+                                <td>23/10/2025</td>
+                                <td>1500</td>
+                                <td>Concluido</td>
+                                <td>Nao</td>
+                                <td><button>Detalhes</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

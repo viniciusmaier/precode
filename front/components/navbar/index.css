@@ -1,6 +1,6 @@
 .container {
     width: 15em;
-    background-color: #eae9e991;
+    background-color: var(--primary-color);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,34 +8,38 @@
     gap: 30px;
 
     .content {
+        width: 100%;
         height: 30px;
         margin: 30px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         img {
-            width: 12em;
+            width: 10em;
         }
     }
 
     nav {
         width: 100%;
 
-        ul li {
-            width: 100%;
-            height: 2.5em;
-            border-radius: 0.8px;
-            display: inline-block;
-            text-align: center;
-            line-height: 2.5em;
-            font-family: "Montserrat", sans-serif;
-            color: rgba(0, 0, 0, 0.69);
+        ul {
+            padding: 0px;
 
-            :houver {
-                background-color: rgba(210, 228, 237, 0.989);
+            li {
+                width: 100%;
+                height: 2.5em;
+                border-radius: 0.8px;
+                display: inline-block;
+                text-align: center;
+                line-height: 2.5em;
+                font-family: var(--font-primary);
+                color: rgba(0, 0, 0, 0.69);
             }
         }
 
         ul li:hover {
-            background-color: rgba(210, 228, 237, 0.989);
+            background-color: var(--primary-color-precode);
         }
     }
 }
