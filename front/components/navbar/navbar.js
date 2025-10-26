@@ -9,36 +9,34 @@ class NavbarComponent extends HTMLElement {
     menuList = [
         {
             description: "Produtos",
-            isActived: false,
-            route: "/front/pages/products/list.html",
+            page: "app-products",
         },
         {
             description: "Pedidos",
-            isActived: false,
-            route: "/front/pages/orders/list.html",
+            page: "app-orders",
         },
     ];
 
     async connectedCallback() {
-        const archiveHtml = await fetch("/front/components/navbar/navbar.html");
-        const cssFile = await fetch("/front/components/navbar/index.css");
-        const html = await archiveHtml.text();
-        const css = await cssFile.text();
+        const template = await fetch("/front/components/navbar/navbar.html");
+        const templateToString = await template.text();
 
-        this.shadowRoot.innerHTML;
-
-        const template = document.createElement("template");
-        template.innerHTML = `
-        <style>${css}</style>
-        ${html}
+        const templateTag = document.createElement("template");
+        this.shadowRoot.innerHTML = `
+            ${templateToString}
         `;
 
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        this.shadowRoot.appendChild(templateTag.content.cloneNode(true));
         this.initNavBarMenu();
     }
 
     handleEvent(e, option) {
-        window.location.assign(option.route);
+        const page = document.createElement(option.page);
+        const root = document.getElementById("root");
+        page.style.width = "100%";
+
+        if (root.children[1]) root.removeChild(root.children[1]);
+        root.append(page);
     }
 
     initNavBarMenu() {

@@ -1,25 +1,11 @@
-main {
-    display: flex;
-
-    .container-list-orders {
+<style>
+    .container {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        background-color: var(--primary-color-container);
+        justify-content: center;
 
-        h1 {
-            font-family: var(--font-primary);
-            color: #696868;
-            font-weight: 500;
-            margin: 30px;
-            width: 90%;
-            display: inline-block;
-        }
-
-        .container-filters {
+        .content {
             background-color: var(--primary-color);
-            width: 90%;
+            width: 100%;
             height: 10em;
             position: relative;
             border-radius: 0.2em;
@@ -82,41 +68,30 @@ main {
                 }
             }
         }
-
-        .container-filters + .list-orders {
-            margin-top: 3.1em;
-        }
-
-        .list-orders {
-            width: 90%;
-            background-color: var(--primary-color);
-            height: 35em;
-            border-radius: 0.2em;
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-
-                thead {
-                    background-color: var(--primary-color-precode);
-                    height: 4em;
-                }
-
-                tbody {
-                    tr:nth-child(odd) {
-                        background-color: var(--primary-color);
-                    }
-
-                    tr,
-                    td {
-                        padding: 10px;
-                    }
-
-                    td {
-                        text-align: center;
-                    }
-                }
-            }
-        }
     }
-}
+</style>
+<div class="container">
+    <div class="content">
+        <form id="filters" action="">
+            <div class="fields">
+                <label for="">
+                    <span>Sku:</span>
+                    <input type="number" name="sku" />
+                </label>
+                <label for="">
+                    <span>Descricao:</span>
+                    <input type="text" name="description" />
+                </label>
+                <label for="">
+                    <span>Status:</span>
+                    <input type="text" name="status" />
+                </label>
+            </div>
+
+            <div class="buttons">
+                <button id="clean-button">Limpar</button>
+                <button id="search-button">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>

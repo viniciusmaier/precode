@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Precode</title>
+        <script
+            type="module"
+            src="../components/navbar/navbar.js"
+            defer></script>
+        <script
+            type="module"
+            src="../components/list/table/table-list.js"
+            defer></script>
+        <script
+            type="module"
+            src="../components/list/filters/filter.js"
+            defer></script>
+        <script type="module" src="../components/form/form.js" defer></script>
+        <script type="module" src="../components/modal/modal.js" defer></script>
+        <script type="module" src="../pages/orders/list.js" defer></script>
+        <script
+            type="module"
+            src="../pages/products/list/list.js"
+            defer></script>
+        <script type="module" src="../api/products-api.js" defer></script>
+        <script type="module" src="../api/api.js" defer></script>
+        <link rel="stylesheet" href="../public/globals.css" />
+    </head>
+    <body>
+        <div style="display: flex" id="root">
+            <app-navbar></app-navbar>
+            <!-- <app-products style="width: 100%"></app-products> -->
+            <app-orders style="width: 100%"></app-orders>
+        </div>
+    </body>
+</html>

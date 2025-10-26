@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
     margin: 0;
@@ -13,10 +14,14 @@
     --primary-color-container: #ffffff51;
 
     --bg-search-button: #158cba;
+    --bg-register-button: #21a959;
     --bg-clean-button: #eeeeee;
     --color-search-button: #ffff;
     --color-clean-button: #352c2ce5;
 
+    --bg-sucess-notify: #28a745;
+
     /* Fontes */
     --font-primary: "Montserrat", sans-serif;
+    --font-notify-primary: "Roboto", sans-serif;
 }

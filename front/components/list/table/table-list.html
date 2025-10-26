@@ -1,0 +1,53 @@
+<style>
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-orders {
+        width: 100%;
+        background-color: var(--primary-color);
+        height: 35em;
+        border-radius: 0.2em;
+        overflow-y: auto;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+
+            thead {
+                background-color: var(--primary-color-precode);
+                height: 4em;
+                position: sticky;
+                top: 0px;
+                z-index: 1;
+            }
+
+            tbody {
+                tr:nth-child(odd) {
+                    background-color: var(--primary-color);
+                }
+
+                tr,
+                td {
+                    padding: 10px;
+                }
+
+                td {
+                    text-align: center;
+                }
+            }
+        }
+    }
+</style>
+<div class="container">
+    <div class="list-orders">
+        <table>
+            <thead>
+                <tr id="columns"></tr>
+            </thead>
+            <tbody id="data"></tbody>
+        </table>
+    </div>
+</div>

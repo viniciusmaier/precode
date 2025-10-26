@@ -1,0 +1,259 @@
+<style>
+    .form {
+        position: relative;
+        font-family: "Inter", sans-serif;
+        color: #333;
+
+        .content-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 12px 16px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #adb5bd #e9ecef;
+        }
+
+        /* Estilo do Scroll (para navegadores WebKit) */
+        .content-form::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-form::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+
+        .content-form::-webkit-scrollbar-track {
+            background-color: #e9ecef;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+            font-size: 0.9em;
+            gap: 4px;
+        }
+
+        input {
+            padding: 6px 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #66afe9;
+            box-shadow: 0 0 3px rgba(102, 175, 233, 0.5);
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #495057;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        /* --- VARIAÇÕES --- */
+        #container-variations {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+            max-height: 380px;
+        }
+
+        #container-variations::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #container-variations::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+
+        #variations {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f1f3f5;
+            border: 1px solid #dee2e6;
+        }
+
+        #variations h3 {
+            color: #212529;
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+
+        #variations button {
+            align-self: flex-start;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #variations button:hover {
+            background-color: #0b5ed7;
+        }
+
+        #container-variations > button {
+            background-color: #198754;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self: center;
+            transition: background-color 0.2s ease;
+        }
+
+        #container-variations > button:hover {
+            background-color: #157347;
+        }
+
+        /* --- BOTÕES FINAIS --- */
+        .content-form + .container-button {
+            margin-top: 30px;
+        }
+
+        .container-button {
+            position: absolute;
+            right: 0;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container-button button {
+            width: 10em;
+            height: 2.2em;
+            color: #fff;
+            background-color: var(--bg-register-button, #0d6efd);
+            border: 0.3px solid #696868;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .container-button button:nth-child(1) {
+            color: #000000da;
+            background-color: #adb5bd;
+        }
+    }
+
+    app-field-to-form {
+        flex: 1 1 auto;
+        min-width: 200px;
+    }
+</style>
+
+<form id="form-container" class="form">
+    <div class="content-form">
+        <div>
+            <h3>Detalhes</h3>
+            <label>SKU <input type="number" name="sku" value="" /></label>
+            <label>Nome <input type="text" name="name" value="" /></label>
+            <label
+                >Descrição <input type="text" name="description" value=""
+            /></label>
+            <label
+                >Nome curto <input type="text" name="shortName" value=""
+            /></label>
+            <label
+                >Status <input type="text" name="status" value="enabled"
+            /></label>
+            <label
+                >Palavras-chave <input type="text" name="wordKeys" value=""
+            /></label>
+            <label>Preço <input type="number" name="price" value="0" /></label>
+            <label
+                >Preço promocional
+                <input type="number" name="promotional_price" value="0"
+            /></label>
+            <label>Custo <input type="number" name="cost" value="0" /></label>
+            <label>Peso <input type="number" name="weight" value="0" /></label>
+            <label
+                >Largura <input type="number" name="width" value="0"
+            /></label>
+            <label
+                >Altura <input type="number" name="height" value="0"
+            /></label>
+            <label
+                >Comprimento <input type="number" name="length" value="0"
+            /></label>
+            <label>Marca <input type="text" name="brand" value="" /></label>
+            <label
+                >URL do Youtube <input type="text" name="urlYoutube" value=""
+            /></label>
+            <label
+                >Descrição no Google
+                <input type="text" name="googleDescription" value=""
+            /></label>
+            <label
+                >Fabricação <input type="text" name="manufacturing" value=""
+            /></label>
+            <label>NBM <input type="text" name="nbm" value="" /></label>
+            <label>Modelo <input type="text" name="model" value="" /></label>
+            <label>Gênero <input type="text" name="gender" value="" /></label>
+            <label
+                >Volumes <input type="number" name="volumes" value="0"
+            /></label>
+            <label
+                >Tempo de garantia
+                <input type="number" name="warrantyTime" value="0"
+            /></label>
+            <label
+                >Categoria <input type="text" name="category" value=""
+            /></label>
+            <label
+                >Subcategoria <input type="text" name="subcategory" value=""
+            /></label>
+            <label
+                >Categoria final <input type="text" name="endcategory" value=""
+            /></label>
+        </div>
+        <div id="container-variations">
+            <div id="variations">
+                <h3>Variações</h3>
+
+                <label>Ref: <input type="number" name="ref" value="0" /></label>
+                <label>Sku: <input type="number" name="sku" value="0" /></label>
+                <label
+                    >Quantidade: <input type="text" name="qty" value=""
+                /></label>
+                <label>Ean: <input type="text" name="ean" value="" /></label>
+
+                <button id="add-specification">Adicionar Especificação</button>
+                <template class="content-specification">
+                    <h3>Especificações:</h3>
+                    <label
+                        >Nome: <input type="text" name="key" value=""
+                    /></label>
+                    <label
+                        >Valor: <input type="text" name="value" value=""
+                    /></label>
+                </template>
+            </div>
+            <button id="add-variations">Adicionar mais Variações</button>
+        </div>
+    </div>
+
+    <div class="container-button"></div>
+</form>
