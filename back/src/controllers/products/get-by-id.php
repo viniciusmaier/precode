@@ -11,20 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$sku = $_GET['sku'] ?? null;
+$id = $_GET['id'] ?? null;
 
-if (!$sku) {
+if (!$id) {
     http_response_code(400);
     echo json_encode(["erro" => "SKU não fornecido"]);
     exit;
 }
 
 $repository = new ProductRepository();
-$result = $repository->getBySku($sku);
+$result = $repository->getById($id);
 
 if (!$result) {
     http_response_code(404);
-    echo json_encode(["erro" => "SKU não encontrado"]);
+    echo json_encode(["erro" => "Produto não encontrado"]);
     exit;
 }
 

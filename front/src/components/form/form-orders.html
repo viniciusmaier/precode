@@ -1,0 +1,388 @@
+<style>
+    :root {
+        --primary: var(--bg-register-button, #007bff);
+        --light-bg: #f8f9fa;
+        --border: #dee2e6;
+        --text: #343a40;
+    }
+
+    .form {
+        position: relative;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        height: 515px;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        .content-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-height: 500px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 10px;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: #adb5bd #e9ecef;
+        }
+
+        .content-form::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-form::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+        .content-form::-webkit-scrollbar-track {
+            background-color: #e9ecef;
+        }
+
+        .bloco {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .bloco:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .bloco h3 {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 4px;
+        }
+
+        .bloco label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .bloco input {
+            padding: 6px 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .bloco input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+        }
+
+        .content-form + .container-button {
+            margin-top: 30px;
+        }
+
+        .container-button {
+            position: absolute;
+            right: 0;
+            bottom: -60px;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container-button button {
+            width: 10em;
+            height: 2.4em;
+            color: #fff;
+            background-color: var(--bg-register-button);
+            border: 0.3px solid #696868;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .container-button button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .container-button button:nth-child(1) {
+            color: #000000da;
+            background-color: #adb5bd;
+        }
+
+        app-field-to-form {
+            flex: 1 1 auto;
+            min-width: 200px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+            font-size: 0.9em;
+            gap: 4px;
+        }
+
+        input {
+            padding: 6px 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border-color: #66afe9;
+            box-shadow: 0 0 3px rgba(102, 175, 233, 0.5);
+        }
+
+        h3 {
+            margin-bottom: 10px;
+            color: #495057;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .container-itens {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+            max-height: 380px;
+        }
+
+        .container-itens::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container-itens::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            background-color: #f1f3f5;
+            border: 1px solid #dee2e6;
+        }
+
+        .item h3 {
+            color: #212529;
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+
+        .item button {
+            align-self: flex-start;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .item button:hover {
+            background-color: #0b5ed7;
+        }
+
+        .container-itens > .add-itens-button {
+            background-color: #198754;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            align-self: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .container-itens > .add-itens-button:hover {
+            background-color: #157347;
+        }
+
+        .container-specification {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            overflow-y: auto;
+            max-height: 250px;
+        }
+
+        .container-specification::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container-specification::-webkit-scrollbar-thumb {
+            background-color: #adb5bd;
+            border-radius: 4px;
+        }
+
+        .specification {
+            display: flex;
+            margin-top: 10px;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+
+        .specification h3 {
+            color: #212529;
+            font-size: 0.95em;
+            margin-bottom: 4px;
+        }
+
+        .add-specification-button {
+            margin-top: 8px;
+            align-self: flex-start;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .remove-specification-button {
+            background-color: var(--bg-delete-register-button) !important;
+        }
+    }
+</style>
+
+<form id="form-container" class="form">
+    <div class="content-form">
+        <div class="bloco">
+            <h3>Pedido:</h3>
+            <label
+                >Código Pedido<input
+                    disabled
+                    type="number"
+                    name="pedido_id"
+                    value=""
+            /></label>
+            <label
+                >Ecommerce ID<input
+                    disabled
+                    type="number"
+                    name="ecommerce_id"
+                    value=""
+            /></label>
+        </div>
+        <div class="bloco">
+            <h3>Dados do Cliente:</h3>
+            <label
+                >Cpf/cnpj do cliente<input
+                    type="number"
+                    name="cpfCnpj"
+                    value=""
+            /></label>
+            <label
+                >Razão social<input type="text" name="nomeRazao" value=""
+            /></label>
+            <label
+                >Fantasia <input type="text" name="fantasia" value=""
+            /></label>
+            <label
+                >Email <input type="text" name="email" value="enabled"
+            /></label>
+        </div>
+        <div class="container-itens">
+            <div class="itens-list">
+                <div class="item">
+                    <h3>Produtos</h3>
+                    <label
+                        >Sku: <input type="number" name="sku" value="0"
+                    /></label>
+                    <label
+                        >Valor Unitário:
+                        <input
+                            type="number"
+                            name="valorUnitario"
+                            disabled
+                            value="0"
+                    /></label>
+                    <label
+                        >Quantidade:
+                        <input type="text" name="quantidade" value=""
+                    /></label>
+
+                    <button class="remove-itens-button">Remover</button>
+                </div>
+            </div>
+            <button class="add-itens-button">Adicionar mais Produtos</button>
+        </div>
+        <div class="bloco">
+            <h3>Endereço:</h3>
+            <label>Cep <input type="text" name="cep" value="" /></label>
+            <label
+                >Endereco <input type="text" name="endereco" value=""
+            /></label>
+            <label>Numero <input type="text" name="numero" value="" /></label>
+            <label>Bairro <input type="text" name="bairro" value="" /></label>
+            <label
+                >Complemento <input type="text" name="complemento" value=""
+            /></label>
+            <label>Cidade <input type="text" name="cidade" value="" /></label>
+            <label>Uf <input type="text" name="uf" value="" /></label>
+            <label
+                >Responsavel pelo recebimento
+                <input type="text" name="responsavelRecebimento" value=""
+            /></label>
+        </div>
+        <div class="bloco">
+            <h3>Telefores</h3>
+            <label
+                >Residencial: <input type="number" name="residencial" value="0"
+            /></label>
+            <label
+                >Comercial: <input type="number" name="comercial" value="0"
+            /></label>
+            <label
+                >Celular: <input type="number" name="celular" value="0"
+            /></label>
+        </div>
+        <div class="bloco">
+            <h3>Pagamento:</h3>
+            <label>Valor: <input type="number" name="valor" value="0" /></label>
+            <label
+                >Quantidade de Parcelas:
+                <input type="number" name="quantidadeParcelas" value="0"
+            /></label>
+            <label
+                >Meio de Pagamento
+                <input type="number" name="meioPagamento" value="0"
+            /></label>
+        </div>
+    </div>
+
+    <div class="container-button"></div>
+</form>

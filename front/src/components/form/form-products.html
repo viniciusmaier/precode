@@ -1,0 +1,326 @@
+<style>
+    :root {
+        --primary: var(--bg-register-button, #007bff);
+        --light-bg: #f8f9fa;
+        --border: #dee2e6;
+        --text: #343a40;
+    }
+
+    .form {
+        position: relative;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        height: 515px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .form .content-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 12px 16px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: #adb5bd #e9ecef;
+    }
+
+    .form .content-form::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .form .content-form::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 4px;
+    }
+
+    .form .content-form::-webkit-scrollbar-track {
+        background-color: #e9ecef;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        font-size: 0.9em;
+        gap: 4px;
+    }
+
+    input {
+        padding: 6px 8px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.2s ease;
+    }
+
+    input:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 3px rgba(102, 175, 233, 0.5);
+    }
+
+    h3 {
+        margin-bottom: 10px;
+        color: #495057;
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .container-variations {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
+        max-height: 380px;
+    }
+
+    .container-variations::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .container-variations::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 4px;
+    }
+
+    .variation {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 6px;
+        background-color: #f1f3f5;
+        border: 1px solid #dee2e6;
+    }
+
+    .variation h3 {
+        color: #212529;
+        font-size: 1em;
+        margin-bottom: 4px;
+    }
+
+    .variation button {
+        align-self: flex-start;
+        background-color: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .variation button:hover {
+        background-color: #0b5ed7;
+    }
+
+    .container-variations > .add-variations-button {
+        background-color: #198754;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        align-self: center;
+        transition: background-color 0.2s ease;
+    }
+
+    .container-variations > .add-variations-button:hover {
+        background-color: #157347;
+    }
+
+    .container-specification {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        overflow-y: auto;
+        max-height: 250px;
+    }
+
+    .container-specification::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .container-specification::-webkit-scrollbar-thumb {
+        background-color: #adb5bd;
+        border-radius: 4px;
+    }
+
+    .specification {
+        display: flex;
+        margin-top: 10px;
+        flex-direction: column;
+        gap: 6px;
+        padding: 8px;
+        border-radius: 6px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+    }
+
+    .specification h3 {
+        color: #212529;
+        font-size: 0.95em;
+        margin-bottom: 4px;
+    }
+
+    .add-specification-button {
+        margin-top: 8px;
+        align-self: flex-start;
+        color: #fff;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .remove-specification-button {
+        background-color: var(--bg-delete-register-button) !important;
+    }
+
+    .content-form + .container-button {
+        margin-top: 30px;
+    }
+
+    .container-button {
+        position: absolute;
+        right: 0;
+        width: 300px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .container-button button {
+        width: 10em;
+        height: 2.2em;
+        color: #fff;
+        background-color: var(--bg-register-button, #0d6efd);
+        border: 0.3px solid #696868;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .container-button button:nth-child(1) {
+        color: #000000da;
+        background-color: #adb5bd;
+    }
+
+    app-field-to-form {
+        flex: 1 1 auto;
+        min-width: 200px;
+    }
+</style>
+
+<form id="form-container" class="form">
+    <div class="content-form">
+        <div>
+            <h3>Detalhes</h3>
+            <label
+                >SKU <input readonly type="number" name="sku" value=""
+            /></label>
+            <label>Nome <input type="text" name="name" value="" /></label>
+            <label
+                >Descrição <input type="text" name="description" value=""
+            /></label>
+            <label
+                >Nome curto <input type="text" name="shortName" value=""
+            /></label>
+            <label>Preço <input type="number" name="price" value="0" /></label>
+            <label
+                >Preço promocional
+                <input type="number" name="promotional_price" value="0"
+            /></label>
+            <label>Custo <input type="number" name="cost" value="0" /></label>
+            <label>Peso <input type="number" name="weight" value="0" /></label>
+            <label
+                >Largura <input type="number" name="width" value="0"
+            /></label>
+            <label
+                >Altura <input type="number" name="height" value="0"
+            /></label>
+            <label
+                >Comprimento <input type="number" name="length" value="0"
+            /></label>
+            <label>Marca <input type="text" name="brand" value="" /></label>
+            <label
+                >Status
+                <select name="status" id="status">
+                    <option value="enabled" selected>Ativo</option>
+                    <option value="disabled">Desativado</option>
+                </select></label
+            >
+        </div>
+
+        <div class="container-variations">
+            <div class="variation-list">
+                <div class="variation">
+                    <h3>Variações</h3>
+                    <label
+                        >Sku: <input readonly type="number" name="sku"
+                    /></label>
+                    <label
+                        >Quantidade: <input type="text" name="qty" value=""
+                    /></label>
+                    <label
+                        >Ean: <input type="text" name="ean" value=""
+                    /></label>
+
+                    <div class="container-specification">
+                        <div class="specification-list">
+                            <template class="specification-template">
+                                <div class="specification">
+                                    <h3>Especificações:</h3>
+                                    <label
+                                        >Nome:
+                                        <input type="text" name="key" value=""
+                                    /></label>
+                                    <label
+                                        >Valor:
+                                        <input
+                                            type="text"
+                                            name="value"
+                                            value=""
+                                    /></label>
+                                    <button class="remove-specification-button">
+                                        Remover Especificação
+                                    </button>
+                                </div>
+                            </template>
+                        </div>
+                        <button class="add-specification-button">
+                            Adicionar Especificação
+                        </button>
+                    </div>
+
+                    <button class="remove-variation-button">
+                        Remover Variação
+                    </button>
+                </div>
+            </div>
+            <button class="add-variations-button">
+                Adicionar mais Variações
+            </button>
+        </div>
+    </div>
+
+    <div class="container-button"></div>
+</form>

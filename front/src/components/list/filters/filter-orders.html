@@ -1,0 +1,101 @@
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+
+        .content {
+            background-color: var(--primary-color);
+            width: 100%;
+            height: 10em;
+            position: relative;
+            border-radius: 0.2em;
+
+            .fields {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 50px;
+                padding: 18px;
+                gap: 10px;
+
+                label {
+                    font-family: var(--font-primary);
+                    font-weight: 400;
+
+                    span {
+                        display: block;
+                        height: 1.3em;
+                    }
+
+                    input {
+                        width: 70%;
+                        height: 2em;
+                        border: 1px solid #d0d0d0a5;
+                        border-radius: 3px;
+                    }
+
+                    input[type="date"] {
+                        width: 40%;
+                    }
+
+                    input:focus {
+                        border-color: #66afe9;
+                        outline: none;
+                    }
+                }
+            }
+
+            .buttons {
+                position: absolute;
+                bottom: 1.5em;
+                right: 7em;
+
+                button {
+                    width: 10em;
+                    height: 2.5em;
+                    background-color: var(--bg-search-button);
+                    border: 0px;
+                    color: var(--color-search-button);
+                    font-weight: bold;
+                    border-radius: 5px;
+                    margin-left: 10px;
+                }
+
+                button:nth-child(1) {
+                    background-color: var(--bg-clean-button);
+                    color: var(--color-clean-button);
+                    border: 0.1px solid #8d8d8d;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+</style>
+<div class="container">
+    <div class="content">
+        <form action="">
+            <div class="fields">
+                <label for="">
+                    <span>Código Pedido:</span>
+                    <input type="number" />
+                </label>
+                <label for="">
+                    <span>Cliente:</span>
+                    <input type="text" />
+                </label>
+                <label for="">
+                    <span>Data:</span>
+                    <input type="date" />
+                </label>
+                <label for="">
+                    <span>Status:</span>
+                    <input type="text" />
+                </label>
+            </div>
+
+            <div class="buttons">
+                <button id="clean-button">Limpar</button>
+                <button id="search-button">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
