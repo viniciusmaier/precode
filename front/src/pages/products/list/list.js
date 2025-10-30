@@ -10,7 +10,7 @@ class ProductsListScreen extends HTMLElement {
     }
 
     async connectedCallback() {
-        const template = await fetch("/src/pages/products/list/list.html");
+        const template = await fetch("./pages/products/list/list.html");
         const templateToString = await template.text();
 
         this.addEventListener("updateListProducts", async () => {
@@ -142,7 +142,6 @@ class ProductsListScreen extends HTMLElement {
                 filterValues[input.name] = input.value;
             }
         });
-        console.log(filterValues);
 
         const data = await this.services.listAll(filterValues);
         return {

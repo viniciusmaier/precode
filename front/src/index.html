@@ -6,37 +6,34 @@
         <title>Precode</title>
         <script
             type="module"
-            src="/src/components/navbar/navbar.js"
+            src="./components/navbar/navbar.js"
             defer></script>
         <script
             type="module"
-            src="/src/components/list/table/table-list.js"
+            src="./components/list/table/table-list.js"
             defer></script>
         <script
             type="module"
-            src="/src/components/list/filters/filter.js"
+            src="./components/list/filters/filter.js"
             defer></script>
-        <script type="module" src="/src/components/form/form.js" defer></script>
+        <script type="module" src="./components/form/form.js" defer></script>
+        <script type="module" src="./components/modal/modal.js" defer></script>
+        <script type="module" src="./pages/orders/list.js" defer></script>
         <script
             type="module"
-            src="/src/components/modal/modal.js"
+            src="./pages/products/list/list.js"
             defer></script>
-        <script type="module" src="/src/pages/orders/list.js" defer></script>
-        <script
-            type="module"
-            src="/src/pages/products/list/list.js"
-            defer></script>
-        <script type="module" src="/src/listeners/product.js" defer></script>
-        <script type="module" src="/src/listeners/order.js" defer></script>
-        <script type="module" src="/src/api/products-api.js" defer></script>
-        <script type="module" src="/src/api/api.js" defer></script>
-        <link rel="stylesheet" href="/public/globals.css" />
+        <script type="module" src="./listeners/product.js" defer></script>
+        <script type="module" src="./listeners/order.js" defer></script>
+        <script type="module" src="./api/products-api.js" defer></script>
+        <script type="module" src="./api/api.js" defer></script>
+        <link rel="stylesheet" href="../public/globals.css" />
     </head>
     <body>
         <div style="display: flex" id="root">
             <app-navbar></app-navbar>
-            <!-- <app-products style="width: 100%"></app-products> -->
-            <app-orders style="width: 100%"></app-orders>
+            <app-products style="width: 100%"></app-products>
+            <!-- <app-orders style="width: 100%"></app-orders> -->
         </div>
     </body>
 </html>

@@ -17,9 +17,7 @@ class ListComponent extends HTMLElement {
     }
 
     async connectedCallback() {
-        const template = await fetch(
-            "/src/components/list/table/table-list.html"
-        );
+        const template = await fetch("./components/list/table/table-list.html");
 
         const templateToString = await template.text();
 

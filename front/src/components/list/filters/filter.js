@@ -8,7 +8,7 @@ class FiltersComponent extends HTMLElement {
 
     async connectedCallback() {
         const template = await fetch(
-            `/src/components/list/filters/${
+            `./components/list/filters/${
                 this.type == "PRODUCT" ? "filter-products" : "filter-orders"
             }.html`
         );

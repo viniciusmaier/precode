@@ -11,7 +11,7 @@ class OrdersListScreen extends HTMLElement {
     }
 
     async connectedCallback() {
-        const template = await fetch("/src/pages/orders/list.html");
+        const template = await fetch("./pages/orders/list.html");
         const templateToString = await template.text();
         this.shadowRoot.innerHTML = templateToString;
 

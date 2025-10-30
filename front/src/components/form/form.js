@@ -1,4 +1,4 @@
-import { ProductServicesApi } from "/src/api/products-api.js";
+import { ProductServicesApi } from "../../api/products-api.js";
 
 class FormComponent extends HTMLElement {
     typeModel = {
@@ -18,7 +18,7 @@ class FormComponent extends HTMLElement {
     }
 
     async toProduct() {
-        const template = await fetch("/src/components/form/form-products.html");
+        const template = await fetch("./components/form/form-products.html");
         const templateToString = await template.text();
         this.shadowRoot.innerHTML = templateToString;
 
@@ -180,7 +180,7 @@ class FormComponent extends HTMLElement {
     }
 
     async toOrders() {
-        const template = await fetch("/src/components/form/form-orders.html");
+        const template = await fetch("./components/form/form-orders.html");
         const templateToString = await template.text();
         this.shadowRoot.innerHTML = templateToString;
 

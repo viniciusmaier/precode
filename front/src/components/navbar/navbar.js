@@ -18,7 +18,7 @@ class NavbarComponent extends HTMLElement {
     ];
 
     async connectedCallback() {
-        const template = await fetch("/src/components/navbar/navbar.html");
+        const template = await fetch("./components/navbar/navbar.html");
         const templateToString = await template.text();
 
         const templateTag = document.createElement("template");

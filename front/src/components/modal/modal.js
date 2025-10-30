@@ -11,7 +11,7 @@ class ModalComponent extends HTMLElement {
     }
 
     async connectedCallback() {
-        const template = await fetch("/src/components/modal/modal.html");
+        const template = await fetch("./components/modal/modal.html");
         const templateToString = await template.text();
         this.shadowRoot.innerHTML = templateToString;
 
