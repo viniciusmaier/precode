@@ -58,4 +58,12 @@ export class ProductServicesApi {
 
         return await result.json();
     }
+
+    async getByVariation(skuVariation) {
+        const result = await fetch(
+            `${ApiServices.route}/products/get-by-variation.php?sku=${skuVariation}`
+        );
+
+        return await result.json();
+    }
 }

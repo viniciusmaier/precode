@@ -144,8 +144,6 @@ class FormComponent extends HTMLElement {
                     data.variations.push(variationObj);
                 });
 
-            console.log(data);
-
             const errors = validateProductData(data);
 
             if (errors.length > 0) {
@@ -238,14 +236,66 @@ class FormComponent extends HTMLElement {
                 itemDiv.classList.add("item");
                 itemDiv.innerHTML = `
                         <h3>Produtos</h3>
-                        <label>Sku: <input type="number" name="sku" value="${produto.sku}" /></label>
-                        <label>Valor Unitário: <input type="number" name="valorUnitario" disabled value="${produto.preco}" /></label>
-                        <label>Quantidade: <input type="text" name="quantidade" value="${produto.quantidade}" /></label>
+                        <label>Sku: <input type="number" name="sku" value="${
+                            produto.sku
+                        }" /></label>
+                        <label>Valor Unitário: <input type="number" name="valorUnitario" disabled value="${
+                            produto.preco * produto.quantidade
+                        }" /></label>
+                        <label>Quantidade: <input type="text" name="quantidade" value="${
+                            produto.quantidade
+                        }" /></label>
                         <button class="remove-itens-button">Remover</button>
             `;
                 containerItens.appendChild(itemDiv);
             });
         }
+
+        const efetivarPedido = () => {
+            const form = this.shadowRoot.getElementById("form-container");
+            const pedido_id = form.querySelector(
+                'input[name="pedido_id"]'
+            ).value;
+            const ecommerce_id = form.querySelector(
+                'input[name="ecommerce_id"]'
+            ).value;
+
+            const data = {
+                pedido_id,
+                ecommerce_id,
+            };
+
+            this.dispatchEvent(
+                new CustomEvent("effectuateOrder", {
+                    bubbles: true,
+                    composed: true,
+                    detail: data,
+                })
+            );
+        };
+
+        const cancelarPedido = () => {
+            const form = this.shadowRoot.getElementById("form-container");
+            const pedido_id = form.querySelector(
+                'input[name="pedido_id"]'
+            ).value;
+            const ecommerce_id = form.querySelector(
+                'input[name="ecommerce_id"]'
+            ).value;
+
+            const data = {
+                pedido_id,
+                ecommerce_id,
+            };
+
+            this.dispatchEvent(
+                new CustomEvent("cancelOrder", {
+                    bubbles: true,
+                    composed: true,
+                    detail: data,
+                })
+            );
+        };
 
         const save = async () => {
             const validateProductData = (data) => {
@@ -346,7 +396,12 @@ class FormComponent extends HTMLElement {
             containerProducts.appendChild(clone);
         };
 
-        this.createButtons({ save, addProducts });
+        this.createButtons({
+            save,
+            addProducts,
+            efetivarPedido,
+            cancelarPedido,
+        });
         this.createInputListeners();
     }
 
@@ -356,16 +411,22 @@ class FormComponent extends HTMLElement {
                 const api = new ProductServicesApi();
                 const sku = skuInput.value.trim();
                 const quantidade = parseInt(quantidadeInput.value) || 0;
+                const pagamento = this.shadowRoot.querySelector("#pagamentos");
+                const valorPagamento = pagamento.querySelector(
+                    'input[name="valor"]'
+                );
 
                 if (sku.length > 0) {
                     try {
-                        const res = await api.getBySku(sku);
+                        const res = await api.getByVariation(sku);
                         if (res.error) return;
                         const productData = res.product;
                         if (!quantidade) quantidadeInput.value = 1;
                         if (productData) {
                             valorInput.value =
                                 productData.price * quantidadeInput.value || "";
+                            valorPagamento.value = 0;
+                            valorPagamento.value = +valorInput.value;
                         }
                     } catch (error) {
                         console.error("Erro ao consultar SKU:", error);
@@ -504,6 +565,22 @@ class FormComponent extends HTMLElement {
                     if (spec) spec.remove();
                 }
             });
+        }
+
+        if (actions.efetivarPedido) {
+            const button = this.shadowRoot.querySelector("#btn-confirmar");
+            button.addEventListener(
+                "click",
+                (e) => (e.preventDefault(), actions.efetivarPedido())
+            );
+        }
+
+        if (actions.cancelarPedido) {
+            const button = this.shadowRoot.querySelector("#btn-cancelar");
+            button.addEventListener(
+                "click",
+                (e) => (e.preventDefault(), actions.cancelarPedido())
+            );
         }
 
         this.shadowRoot

@@ -30,14 +30,56 @@ export class OrderEventListeners {
                 .querySelector("app-orders")
                 .shadowRoot.querySelector("app-modal");
 
-            if (form) {
-                form.dispatchEvent(
-                    new CustomEvent("closeModal", {
-                        bubbles: true,
-                        composed: true,
-                    })
-                );
-            }
+            form.dispatchEvent(
+                new CustomEvent("closeModal", {
+                    bubbles: true,
+                    composed: true,
+                })
+            );
+        });
+
+        document.addEventListener("effectuateOrder", async (data) => {
+            const result = await this.api.effective(data.detail);
+
+            document.querySelector("app-orders").dispatchEvent(
+                new CustomEvent("updateListOrders", {
+                    bubbles: true,
+                    composed: true,
+                })
+            );
+
+            document.querySelector("app-orders").dispatchEvent(
+                new CustomEvent("notifyEvent", {
+                    bubbles: true,
+                    composed: true,
+                    detail: {
+                        message: result.message,
+                        status: result.status,
+                    },
+                })
+            );
+        });
+
+        document.addEventListener("cancelOrder", async (data) => {
+            const result = await this.api.cancel(data.detail);
+
+            document.querySelector("app-orders").dispatchEvent(
+                new CustomEvent("updateListOrders", {
+                    bubbles: true,
+                    composed: true,
+                })
+            );
+
+            document.querySelector("app-orders").dispatchEvent(
+                new CustomEvent("notifyEvent", {
+                    bubbles: true,
+                    composed: true,
+                    detail: {
+                        message: result.message,
+                        status: result.status,
+                    },
+                })
+            );
         });
     }
 }

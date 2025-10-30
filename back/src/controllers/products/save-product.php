@@ -5,7 +5,7 @@
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: POST, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type");
-
+    $repository = new ProductRepository();
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         http_response_code(200);
         exit;
@@ -57,13 +57,12 @@
                     ];
                 }
             }
+
             $product["variations"][] = [
-                "ref" => $variation["ref"] ?? "",
                 "sku" => isset($variation["sku"]) ? (int)$variation["sku"] : null,
                 "qty" => isset($variation["qty"]) ? (int)$variation["qty"] : 0,
                 "ean" => $variation["ean"] ?? "",
                 "specifications" => $specifications,
-                "images" => $variation["images"] ?? []
             ];
         }
     } else {
@@ -72,11 +71,18 @@
         exit;
     }
 
-    $repository = new ProductRepository();
+    
     $apiClient = new ProductApiClientPrecode();
     $updatedStockApi = false;
     try {
         foreach ($product["variations"] as &$variation) {
+            $repository->saveVariations($product['sku'], [
+                "sku" => $variation["sku"],
+                "qty" => isset($variation["qty"]) ? (int)$variation["qty"] : 0,
+                "ean" => $variation["ean"] ?? "",
+                "specifications" => $specifications,
+            ]);
+            
             $isRegistered = false;
 
             if (!empty($variation['sku'])) {

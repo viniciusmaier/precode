@@ -55,6 +55,19 @@
             updated_at TIMESTAMP DEFAULT NOW()
         );
 
+        
+        CREATE TABLE IF NOT EXISTS product_variation (
+            id SERIAL PRIMARY KEY,
+            sku INT NOT NULL,
+            sku_variation INT NOT NULL,
+            qty INT NOT NULL,
+            ean INT NOT NULL,
+            specification JSONB,
+
+            UNIQUE(sku, sku_variation)
+        );
+
+
         CREATE TABLE IF NOT EXISTS pedidos (
             id SERIAL PRIMARY KEY,
             ecommerce_id VARCHAR(100),

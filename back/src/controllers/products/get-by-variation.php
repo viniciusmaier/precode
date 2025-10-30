@@ -20,9 +20,7 @@ if (!$sku) {
 }
 
 $repository = new ProductRepository();
-$result = $repository->getBySku($sku);
-
-
+$result = $repository->getByVariation($sku);
 
 if (!$result) {
     http_response_code(404);

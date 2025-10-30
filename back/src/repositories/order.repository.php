@@ -146,6 +146,30 @@ class OrderRepository {
         }
     }
 
+    public function updateStatus($idPedidoParceiro, $status) {
+        if (!$idPedidoParceiro) return false;
+        try {
+            $query = "SELECT status FROM pedidos WHERE id = $1";
+            $paramQuery = [$idPedidoParceiro];
+            $result = $this->repository->fetchAll($query, $paramQuery);
+
+            if($result[0]['status'] == 'CANCELED') return false;
+
+            $sql = "UPDATE pedidos 
+                    SET status = $1, atualizado_em = NOW() 
+                    WHERE id = $2";
+
+            $params = [$status, $idPedidoParceiro];
+
+       
+            $this->repository->execute($sql, $params);
+            return true;
+        } catch (\Exception $e) {
+            error_log('Erro ao atualizar número do pedido: ' . $e->getMessage());
+            return false;
+        }
+    }
+
     public function getById(int $pedidoId) {
         $sql = "SELECT 
                     p.id AS pedido_id,

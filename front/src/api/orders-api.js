@@ -1,7 +1,7 @@
 import { ApiServices } from "./api.js";
 
 export class OrdersServicesApi {
-    async save(product) {
+    async save(order) {
         const result = await fetch(
             `${ApiServices.route}/orders/save-order.php`,
             {
@@ -9,7 +9,55 @@ export class OrdersServicesApi {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(product),
+                body: JSON.stringify(order),
+            }
+        );
+
+        const json = await result.json();
+        return result.status == 200
+            ? {
+                  status: "sucesso",
+                  message: json["sucesso"],
+              }
+            : {
+                  status: "erro",
+                  message: json[error],
+              };
+    }
+
+    async effective(order) {
+        const result = await fetch(
+            `${ApiServices.route}/orders/effective-order.php`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(order),
+            }
+        );
+
+        const json = await result.json();
+        return result.status == 200
+            ? {
+                  status: "sucesso",
+                  message: json["sucesso"],
+              }
+            : {
+                  status: "erro",
+                  message: json[error],
+              };
+    }
+
+    async cancel(order) {
+        const result = await fetch(
+            `${ApiServices.route}/orders/cancel-order.php`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(order),
             }
         );
 

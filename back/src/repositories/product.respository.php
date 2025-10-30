@@ -76,8 +76,51 @@
             return $result[0]["sku"] ?? null;
         }
 
+        public function saveVariations($productSku, $variation) {
+            $sql = "
+                INSERT INTO product_variation (
+                    sku, sku_variation, qty, ean, specification
+                ) VALUES (
+                    $1, $2, $3, $4, $5::jsonb
+                )
+                ON CONFLICT (sku, sku_variation) DO UPDATE SET
+                    qty = EXCLUDED.qty,
+                    ean = EXCLUDED.ean,
+                    specification = EXCLUDED.specification
+                RETURNING sku
+            ";
 
-      public function listAll($filters = []) {
+            $params = [
+                $productSku,
+                $variation['sku'],
+                $variation['qty'] ?? 0,
+                $variation['ean'] ?? '',
+                json_encode($variation['specification'] ?? [])
+            ];
+
+            $result = $this->repository->fetchAll($sql, $params);
+
+            return $result[0]['sku'] ?? null;
+        }
+
+        public function getByVariation($sku) {
+            $sql = 'SELECT v.sku_variation,
+                           prod.description,
+                           prod.price,
+                           v.qty
+                    FROM product_variation v
+                    INNER JOIN products prod ON prod.sku = v.sku 
+                    WHERE v.sku_variation = $1';
+
+            $params = [$sku];
+
+            $result = $this->repository->fetchAll($sql, $params);
+
+            return !empty($result) ? $result[0] : null;
+
+        }
+
+        public function listAll($filters = []) {
             $sql = "SELECT 
                 id, sku, description, status, updated_at, price
             FROM products";
@@ -121,6 +164,7 @@
             $params = [$sku];
 
             $result = $this->repository->fetchAll($sql, $params);
+
             return !empty($result) ? $result[0] : null;
         }
 
